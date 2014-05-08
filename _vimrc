@@ -12,7 +12,7 @@ filetype off
 "
 " see :h vundle for more details or wiki for FAQ
 if has("win32")
-	set rtp+=$HOME/.vim/bundle/Vundle.vim
+	set rtp+=$HOME/_vim/bundle/Vundle.vim
 else
 	set rtp+=~/.vim/bundle/Vundle.vim
 endif
