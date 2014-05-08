@@ -11,7 +11,11 @@ filetype off
 " :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
 "
 " see :h vundle for more details or wiki for FAQ
-set rtp+=~/.vim/bundle/Vundle.vim
+if has("win32")
+	set rtp+=$HOME/.vim/bundle/Vundle.vim
+else
+	set rtp+=~/.vim/bundle/Vundle.vim
+endif
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
@@ -43,7 +47,7 @@ set laststatus=2
 let g:airline#extensions#tabline#enabled=1
 
 " KEY MAPPING
-inoremap <C-I> <C-[>
+inoremap <S-I> <C-[>
 nnoremap <C-Y> :NERDTreeToggle<CR>
 nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <F1> :tabn 1<CR>
