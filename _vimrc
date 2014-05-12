@@ -47,7 +47,6 @@ set laststatus=2
 let g:airline#extensions#tabline#enabled=1
 
 " KEY MAPPING
-inoremap <S-I> <C-[>
 nnoremap <C-Y> :NERDTreeToggle<CR>
 nnoremap <F1> :tabn 1<CR>
 nnoremap <F2> :tabn 2<CR>
