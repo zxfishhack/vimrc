@@ -23,7 +23,7 @@ Plugin 'The-NERD-tree'
 Plugin 'bling/vim-airline'
 Plugin 'FuzzyFinder'
 Plugin 'L9'
-Plugin 'freya'
+Plugin 'molokai'
 call vundle#end()
 filetype plugin indent on
 
@@ -40,7 +40,11 @@ set softtabstop=4
 set cindent
 set incsearch
 syntax on
-color freya
+set t_Co=256
+color molokai 
+highlight Pmenu ctermfg=0 ctermbg=6 gui=none
+highlight PmenuSel ctermfg=7 ctermbg=4 gui=none
+highlight PmenuSbar ctermfg=0 ctermbg=9 gui=none
 
 " AIRLINE CONFIG
 set laststatus=2
