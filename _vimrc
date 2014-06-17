@@ -16,6 +16,9 @@ if has("win32")
 else
 	set rtp+=~/.vim/bundle/Vundle.vim
 endif
+if has("mouse")
+	set mouse=a
+endif
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
@@ -78,8 +81,8 @@ nnoremap <C-X> :q<CR>
 nnoremap <C-S> :w<CR>
 
 " FOLD & UNFLOD
-nnoremap <C-O> zO
-nnoremap <C-U> zC
+nnoremap <C-O> za
+nnoremap <2-LeftMouse> za
 
 " FOR FUZZYFINDER
 nnoremap <leader>ff :FufFile<CR>
