@@ -27,6 +27,8 @@ Plugin 'bling/vim-airline'
 Plugin 'FuzzyFinder'
 Plugin 'L9'
 Plugin 'molokai'
+Plugin 'gmarik/vundle'
+Plugin 'cespare/vim-golang'
 call vundle#end()
 filetype plugin indent on
 
@@ -81,8 +83,8 @@ nnoremap <C-X> :q<CR>
 nnoremap <C-S> :w<CR>
 
 " FOLD & UNFLOD
-nnoremap <C-O> za
-nnoremap <2-LeftMouse> za
+nnoremap <C-O> zA
+nnoremap <2-LeftMouse> zA
 
 " FOR FUZZYFINDER
 nnoremap <leader>ff :FufFile<CR>
