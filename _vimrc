@@ -1,6 +1,5 @@
 set nocompatible
 set nowrap
-filetype off
 " VUNDLE SETUP
 " run this command before first use :
 " git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -11,6 +10,9 @@ filetype off
 " :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
 "
 " see :h vundle for more details or wiki for FAQ
+" Install Golang Plugins 
+" 1. install hg
+" 2. :GoInstallBinaries to auto install go binaries
 if has("win32")
 	set rtp+=$HOME/_vim/bundle/Vundle.vim
 else
@@ -27,14 +29,17 @@ Plugin 'bling/vim-airline'
 Plugin 'FuzzyFinder'
 Plugin 'L9'
 Plugin 'molokai'
-Plugin 'cespare/vim-golang'
 Plugin 'majutsushi/tagbar'
 Plugin 'wesleyche/SrcExpl'
 Plugin 'OmniCppComplete'
-Plugin 'AutoComplPop'
-Plugin 'taglist.vim'
+Plugin 'scrooloose/syntastic'
+" plugin for GOLANG
+Plugin 'fatih/vim-go'
+Plugin 'Blackrush/vim-gocode'
+Plugin 'nsf/gocode'
 call vundle#end()
 filetype plugin indent on
+filetype plugin on
 
 " GLOBAL SETUP
 set fileencodings=ucs-bom,utf-8,cp936
@@ -56,6 +61,7 @@ else
 	let g:tagbar_ctags_bin = "ctags"
 endif
 let g:tagbar_right = 1
+set omnifunc=syntaxcomplete#Complete
 
 set t_Co=256
 color molokai 
@@ -63,7 +69,19 @@ highlight Pmenu ctermfg=0 ctermbg=6 gui=none
 highlight PmenuSel ctermfg=7 ctermbg=4 gui=none
 highlight PmenuSbar ctermfg=0 ctermbg=9 gui=none
 
-" OmniCppComplete Setup
+" vim-go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_fmt_command = "goimports"
+
+" ycm
+nnoremap <buffer> <silent> gd :YcmCompleter GoTo<cr>
+let g:ycm_complete_in_comments = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_server_log_level = 'error'
+
+" OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
 let OmniCpp_ShowAccess = 1
@@ -73,7 +91,7 @@ let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
 let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
-au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -107,6 +125,7 @@ nnoremap <C-K> :tabprev<CR>
 nnoremap <S-L> :TagbarToggle<CR>
 nmap <S-M> :SrcExplToggle<CR>
 nnoremap <S-C> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+nnoremap <S-G> :!gotags -R . > tags<CR>
 
 set guifont=Consolas:h11
 set fdm=syntax
