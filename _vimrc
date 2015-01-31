@@ -31,6 +31,8 @@ Plugin 'cespare/vim-golang'
 Plugin 'majutsushi/tagbar'
 Plugin 'wesleyche/SrcExpl'
 Plugin 'OmniCppComplete'
+Plugin 'AutoComplPop'
+Plugin 'taglist.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -48,7 +50,11 @@ set cindent
 set incsearch
 set cursorline
 syntax on
-let g:tagbar_ctags_bin = "ctags"
+if has("CTAGS_PATH")
+	let g:tagbar_ctags_bin = $CTAGS_PATH/ctags
+else
+	let g:tagbar_ctags_bin = "ctags"
+endif
 let g:tagbar_right = 1
 
 set t_Co=256
@@ -69,6 +75,14 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 set completeopt=menuone,menu,longest,preview
+
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
 
 " AIRLINE CONFIG
 set laststatus=2
@@ -92,6 +106,7 @@ nnoremap <C-J> :tabnext<CR>
 nnoremap <C-K> :tabprev<CR>
 nnoremap <S-L> :TagbarToggle<CR>
 nmap <S-M> :SrcExplToggle<CR>
+nnoremap <S-C> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 set guifont=Consolas:h11
 set fdm=syntax
