@@ -73,7 +73,11 @@ highlight PmenuSbar ctermfg=0 ctermbg=9 gui=none
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
+let g:go_auto_type_info = 1
 let g:go_fmt_command = "goimports"
+au FileType go nmap <C-G><C-D> <Plug>(go-doc)
+au FileType go nmap <C-G><C-V> <Plug>(go-doc-vertical)
+au FileType go nmap <C-G><C-I> <Plug>(go-implements)
 
 " ycm
 nnoremap <buffer> <silent> gd :YcmCompleter GoTo<cr>
