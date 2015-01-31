@@ -27,8 +27,10 @@ Plugin 'bling/vim-airline'
 Plugin 'FuzzyFinder'
 Plugin 'L9'
 Plugin 'molokai'
-Plugin 'gmarik/vundle'
 Plugin 'cespare/vim-golang'
+Plugin 'majutsushi/tagbar'
+Plugin 'wesleyche/SrcExpl'
+Plugin 'OmniCppComplete'
 call vundle#end()
 filetype plugin indent on
 
@@ -44,12 +46,29 @@ set shiftwidth=4
 set softtabstop=4
 set cindent
 set incsearch
+set cursorline
 syntax on
+let g:tagbar_ctags_bin = "ctags"
+let g:tagbar_right = 1
+
 set t_Co=256
 color molokai 
 highlight Pmenu ctermfg=0 ctermbg=6 gui=none
 highlight PmenuSel ctermfg=7 ctermbg=4 gui=none
 highlight PmenuSbar ctermfg=0 ctermbg=9 gui=none
+
+" OmniCppComplete Setup
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+" automatically open and close the popup menu / preview window
+au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
+set completeopt=menuone,menu,longest,preview
 
 " AIRLINE CONFIG
 set laststatus=2
@@ -71,6 +90,8 @@ nnoremap <F11> :tabn 11<CR>
 nnoremap <F12> :tabn 12<CR>
 nnoremap <C-J> :tabnext<CR>
 nnoremap <C-K> :tabprev<CR>
+nnoremap <S-L> :TagbarToggle<CR>
+nmap <C-M> :SrcExplToggle<CR>
 
 set guifont=Consolas:h11
 set fdm=syntax
