@@ -91,7 +91,7 @@ nnoremap <F12> :tabn 12<CR>
 nnoremap <C-J> :tabnext<CR>
 nnoremap <C-K> :tabprev<CR>
 nnoremap <S-L> :TagbarToggle<CR>
-nmap <C-M> :SrcExplToggle<CR>
+nmap <S-M> :SrcExplToggle<CR>
 
 set guifont=Consolas:h11
 set fdm=syntax
