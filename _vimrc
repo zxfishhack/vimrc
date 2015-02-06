@@ -169,4 +169,4 @@ nnoremap <C-N> :cn<CR>
 nnoremap <C-P> :cp<CR>
 
 " VIMGREP command
-map gr :vimgrep <cword> **/*.lua **/*.c **/*.cpp **/*.h<CR>
+map gr :vimgrep <cword> **/*.lua **/*.c **/*.cpp **/*.h **/*.go **/*.coffee **/*.py<CR>
