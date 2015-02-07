@@ -70,6 +70,7 @@ highlight PmenuSel ctermfg=7 ctermbg=4 gui=none
 highlight PmenuSbar ctermfg=0 ctermbg=9 gui=none
 
 " vim-go
+au BufRead,BufNewFile *.go set filetype=go
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
